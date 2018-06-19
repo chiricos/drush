@@ -1,0 +1,5 @@
+$ drupal create:nodes page --limit=10 --title-words=4 --time-range=Y
+$ drupal create:nodes article --limit=10 --title-words=4 --time-range=Y
+$ drupal create:users gestordrush --limit 5 --password=test --time-range=M
+$ drupal create:vocabularies --limit=1 --name-words=3
+$ drupal create:terms n7vt9vmn --limit=20 --name-words=5
