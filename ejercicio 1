@@ -1,0 +1,10 @@
+
+
+$ drush dl business
+$ drush en business
+$ drush config-set system.theme default business
+$ drush config-list
+# archivo de configuración es system.theme
+$ drush config-get system.theme
+$ drush config-set system.theme default business
+$ drush cr
