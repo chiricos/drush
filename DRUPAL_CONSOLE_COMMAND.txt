@@ -1,0 +1,174 @@
+
+
+
+# Una vez instalado Drupal Console, ejecutaremos el comando drupal init, que se encarga de inicializar los archivos de configuración de Drupal Console.
+$ drupal init
+
+Realiza una instalación de Drupal.
+
+$ drush dl drupal --drupal-project-rename=console
+$ cd console
+$ drupal site:install
+$ drupal site:status
+
+Para el sitio a modo de mantenimiento (on), y viceversa (off).
+$ drupal site:maintenance on
+$ drupal site:maintenance off 
+
+
+# Muestra algunas estadísticas relacionadas con los elementos creados en el sitio: número de nodos por tipo de contenido, comentarios, usuarios, vistas, módulos instalados, etc.
+$ drupal site:statistics	
+
+# Comprueba si hay actualizaciones pendientes.
+$ drupal update:debug
+
+# Ejecuta las actualizaciones pendientes de un módulo.
+$ drupal update:execute pathauto
+
+
+
+INSTALACIÓN Y DESINSTALACION DE MÓDULOS
+
+$ drupal module:install token
+$ drupal module:uninstall token
+
+# descarga el modulo sin instalarlo
+$ drupal module:download rules
+
+# Devuelve la ruta donde está instalado el módulo. 
+$ drupal module:path módulo
+$ drupal module:path rules
+
+# Devuelve un listado con los módulos disponibles, indicando, para cada uno de ellos, si pertenecen al núcleo o no, si están instalados o desinstalados, etc.
+$ drupal module:debug
+
+#Vacía y reconstruye todas las caches del sitio, o la caché específica indicada.
+$ drupal cache:rebuild
+$ drupal cr all
+$ drupal cr discovery
+
+# Muestra los mensajes del registro de eventos. Se puede limitar el número de elementos a mostrar (--limit), especificar el tipo de errores (--type), etc.
+$ drupal database:log:debug --limit 3
+
+# Si se especifica un ID de evento, se muestra toda la información de ese mensaje de log.
+$ drupal database:log:debug 375
+
+# Elimita los eventos de la tabla de log. Se puede especificar un id en particular, un tipo de evento (--type), etc.
+$ drupal database:log:clear 48
+$ drupal database:log:clear --type='cron'
+$ drupal database:log:clear
+
+# Muestra el valor de una variable de estado. 
+$ drupal state:debug variable
+$ drupal state:debug system.cron_last
+
+# Asigna un valor a una variable de estado. Si la variable no existe, la crea. drupal state:override variable valor
+$ drupal state:override system.maintenance_mode 1
+
+# Elimina una variable de estado. 
+$ drupal state:delete variable
+$ drupal state:delete system.maintenance_mode
+
+
+GESTIONAR CONFIGURACIÓN
+
+# Muestra el valor de un objeto de configuración. 
+$ drupal config:debug objeto
+$ drupal config:debug system.site
+
+# Permite editar un objeto de configuración. Opcionalmente se puede especificar el editor a utilizar. Si no se especifica uno, se utilizará el editor por defecto.
+$ drupal config:edit objeto [editor]
+$ drupal config:edit system.site nano
+
+# Elimina un objeto de configuración del tipo de configuración especificado (active o staging).
+$ drupal config:delete tipo_config objeto
+$ drupal config:delete active system.cron
+
+# Sobrescribe el valor de un objeto de la configuración activa. drupal config:override objeto variable valor
+$ drupal config:override system.site mail 'example@example.org' Configuration name system.site
+
+# Muestra las diferencias entre la configuración activa y el directorio de exportación (sync).
+$ drupal config:diff
+
+#Exporta la configuración activa al directorio de exportación. Se puede utilizar el parámetro --directory para especificar otro directorio, y --tar para generar un único archivo (para generar una copia de seguridad).
+$ drupal config:export
+
+# Importa la configuración desde el directorio de exportación a la configuración activa.
+$ drupal config:import
+
+# Importa un único objeto de configuración desde el archivo especificado. 
+$ drupal config:import:single objeto ruta
+$ drupal config:import:single system.date system.date.yml
+
+
+COMANDO DE ADMINISTRACIÓN DE USUARIOS
+
+# Muestra los usuarios del sitio.
+$ drupal user:debug
+
+# Elimina usuarios del sistema. Si no se especifica un valor de --user-id, el sistema nos pedirá los id de los usuarios a eliminar.
+$ drupal user:delete --user-id=2
+$ drupal user:delete --user=2
+
+# Añade o elimina un rol al usuario indicado.
+$ drupal user:role add userdesa1 gestor
+
+# drupal user:role add userdesa1 gestor
+$ drupal user:login:clear:attempts 1
+
+# Crea una URL de acceso de un solo uso para el usuario indicado. cambiar contraseña y datos
+$ drupal user:login:url 1
+
+# Crea un hash a partir de una contraseña en texto plano.
+$ drupal user:password:hash 'forcontu'
+
+# Establece una nueva contraseña para el usuario especificado.
+$ drupal user:password:reset 19 'newpass'
+
+
+COMANDOS DE CREACIÓN DE CONTENIDOS PARA DESARROLLO
+
+# Crea nodos de relleno. Podemos especificar el tipo de contenido, número de nodos (--limit), etc.
+$ drupal create:nodes article --limit=5 --title-words=4 --time-range=Y
+
+# Crea comentarios de relleno en el nodo indicado.
+$ drupal create:comments 1 --limit=5 --title-words=3 --time-range=W
+
+# Crea usuarios de relleno. 
+$ drupal create:users gestor,authenticated --limit 5 --password=test --time-range=M
+
+# Crea vocabularios de relleno.
+$ drupal create:vocabularies --limit=5 --name-words=3
+
+# Crea términos de relleno en los vocabularios indicados.
+$ drupal create:terms d2jftxjx --limit=50 --name-words=5
+
+
+COMANDOS DE CREACIÓN DE MÓDULOS
+
+Crear un módulo
+
+#Comandos relacionados con la creación del esqueleto (archivos) de un módulo.
+$ drupal generate:module
+Enter the new module name:
+> Forcontu Hello
+Enter the module machine name [forcontu_hello]:
+>
+Enter the module Path [/modules/custom]: >
+Enter module description [My Awesome Module]: > My first module
+Enter package name [Custom]: > Forcontu
+Enter Drupal Core version [8.x]: >
+Do you want to generate a .module file (yes/no) [yes]: > no
+Define module as feature (yes/no) [no]: > no
+Do you want to add a composer.json file to your module (yes/no) [yes]: > yes
+Would you like to add module dependencies (yes/no) [no]: > yes
+Module dependencies separated by commas (i.e. context, panels): > ctools, token
+Do you confirm generation? (yes/no) [yes]: > yes
+
+# Genera el archivo .module del módulo indicado. 
+$ drupal generate:module:file options
+Enter the module name [forcontu_hello]: >
+Do you confirm generation? (yes/no) [yes]: > yes
+
+
+ 
