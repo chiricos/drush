@@ -1,0 +1,3 @@
+drush dl business
+drush en business
+drush config-set system.theme default business

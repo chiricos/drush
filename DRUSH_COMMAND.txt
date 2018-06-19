@@ -1,0 +1,186 @@
+	DRUSH
+
+
+INSTALCCIÓN DE UN PROYECTO 
+
+
+# descarga de drupal
+$ drush dl drupal --drupal-project-rename=be1
+
+# descarga que version desea
+$ drush dl drupal drupal-8 --default-major=8 --select --all --drupal-project-rename=be1
+
+$ drush si standard --db-url='mysql://root:secret@localhost/back' --site-name='Experto en Drupal 8 Back-End Development' --site-mail=edward.diaz@bitsamericas.com --account-name=admin --account-pass=bits --account-mail=edward.diaz@bitsamericas.com --locale=es
+
+
+SINTASIS Y EJECUCION DE COMANDOS
+
+$ drush [options] <command> [argument1] [argument2]
+
+
+#Rebuild a Drupal 8 site and clear all its caches.
+$ drush help cache-rebuild
+$ drush help cr
+
+# Muestra un listado con diferentes temáticas. Indicando un número, se mostrará ayuda sobre la temática seleccionada.
+$ drush topic
+
+# estado del drupal
+$ drush status
+
+# información detallada de un modulo
+$ drush pm-info
+$ drush pm-list
+$ drush pmi business
+
+# Instalar un modulo
+$ drush pm-enable nombre-modulo
+$ drush en nombre-modulo
+
+# Desinstalar modulo
+$ drush pm-uninstall forcontu_hello
+$ drush pm-u forcontu_hello
+
+# Cache
+$ drush cache-clear
+$ drush cc
+$ drush cc router
+$ drush cc all
+
+
+# Muestra el listado de mensajes del registro de eventos, filtrados por tipo o nivel de severidad.
+$ drush watchdog-list
+$ drush wd-list
+
+# Muestra mensajes del registro de eventos. Si se indica un id de mensaje, se mostrará ese mensaje en detalle. 
+
+# drush watchdog-show wid 
+# drush wd-show wid
+# drush ws wid
+
+
+VARIABLES DE ESTADO
+
+# Muestra el valor de una variable de estado. 
+$ drush state-get variable
+$ drush sget variable
+
+# Asigna un valor a una variable de estado. Si la variable no existe, la crea. 
+$ drush state-set variable valor
+$ drush sset variable valor
+
+# Elimina una variable de estado. 
+# drush state-delete variable
+# drush sdel variable
+
+# Muestra un listado de objetos de configuración. 
+$ drush config-list [prefijo]
+$ drush cli [prefijo]
+
+# Muestra el valor de una variable de configuración o de un objeto de configuración completo.
+$ drush config-get objeto [variable] 
+$ drush cget objeto [variable]
+$ drush config-get system.site
+$ drush config-get system.site page.front
+
+# Asigna un valor a la variable de configuración especificada. Si el objeto o la variable de configuración no existen, el sistema nos preguntará si queremos crearlo.
+$ drush config-set objeto variable valor 
+$ drush cset objeto variable valor
+$ drush config-set system.date first_day 1
+
+# Abre el objeto de configuración indicado en un editor de textos para su edición. Al finalizar la edición y guardar el archivo, los valores especificados son importados a la configuración activa. El editor de textos utilizado será el editor por defecto que tengamos configurado en la consola (VIM, por ejemplo).
+$ drush config-edit objeto 
+$ drush cedit objeto
+$ drush config-edit system.date
+
+
+# Exporta la configuración, por defecto al directorio de exportar configuración definido en settings.php.
+$ drush config-export 
+$ drush cex
+$ drush config-export –destination
+Configuration successfully exported to /home/drupal8/drush- backups/config-export/20160825093443.
+
+# Importa la configuración a la configuración activa desde el directorio de exportación.
+$ drush config-import 
+$ drush cim
+$ drush config-import Collection Config Operation system.date update
+
+
+COMANDOS DE ADMINISTRACIÓN DE USUARIOS
+
+# Crea una cuenta de usuario.
+$ drush user-create name options
+$ drush ucrt name options
+
+$ drush user-create userdesa1
+$ drush user-information admin
+
+# Asigna una contraseña al usuario especificado.
+$ drush user-password name --password='password'
+$ drush upwd name --password='password'
+$ drush user-password userdesa1 --password='newpassword'
+
+# Genera un enlace de acceso de un solo uso para el usuario indicado. 
+$ drush user-login name
+$ drush uli name
+$ drush user-login userdesa1
+
+
+# Bloquea al usuario o usuarios especificados. 
+$ drush user-block name
+$ drush ublk name
+$ drush user-block userdesa1
+
+# Desbloquea al usuario o usuarios especificados. 
+$ drush user-unblock name
+$ drush uublk name
+$ drush user-unblock userdesa1
+
+# Cancela la cuenta de usuario especificada. 
+$ drush user-cancel name
+$ drush ucan name
+$ drush user-cancel userdesa1
+
+ROLES Y PERMISOS
+
+# Añade un rol a los usuarios indicados.
+$ drush user-add-role role users
+$ drush urol role users
+$ drush user-add-role "gestor" userdesa1,userdesa2
+
+# Elimina un rol a los usuarios indicados. 
+$ drush user-remove-role role users
+$ drush urrol role users
+$ drush user-remove-role "gestor" userdesa1
+
+
+# Muestra un listado con todos los roles definidos en el sistema.
+$ drush role-list 
+$ drush rls
+$ drush role-list
+
+# Si se especifica un nombre de rol, muestra los permisos asociados a ese rol. 
+$ drush role-list role
+$ drush rls role
+$ drush role-list 'gestor'
+
+# Crea un nuevo role
+$ drush role-create 'machine_name' 'name'
+$ drush rcrt 'machine_name' 'name'
+$ drush role-create 'content_editor' 'Content Editor'
+
+# Elimina un role
+$ drush role-delete 'machine_name'
+$ drush rdel 'machine_name'
+$ drush role-delete 'content_editor'
+
+# Asigna permisos a un rol.
+$ drush role-add-perm role permissions
+$ drush rap role permissions
+$ drush role-add-perm 'gestor' 'post comments'
+
+# Elimina permisos de un rol.
+$ drush role-remove-perm role permissions
+$ drush rmp role permissions
+$ drush role-remove-perm 'gestor' 'post comments'
+
