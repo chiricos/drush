@@ -1,0 +1,6 @@
+$ drush role-create 'gestordrush' 'Gestor Drush'
+$ drush role-add-perm 'gestordrush' 'access content overview' , 'administer nodes'
+$ drush ucrt demodrush
+$ drush user-add-role "gestordrush" demodrush
+$ drush user-password demodrush --password='demodrush'
+$ drush user-block demodrush

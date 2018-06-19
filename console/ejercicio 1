@@ -1,0 +1,5 @@
+$ drupal cr all
+$ drupal database:log:debug --limit 10
+$ drupal database:log:clear --type='php'
+$ drupal user:login:url 9
+$ drupal user:login:clear:attempts 1
