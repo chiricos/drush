@@ -1,0 +1,14 @@
+{
+  "name": "drupal/forcontu_hello",
+  "type": "drupal-module",
+  "description": "My first module",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/forcontu_hello",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/forcontu_hello",
+    "source": "http://cgit.drupalcode.org/forcontu_hello"
+  },
+  "require": { }
+}

@@ -1,0 +1,2 @@
+$ drush pm-uninstall training_drupal_8
+$ drush en training_drupal_8

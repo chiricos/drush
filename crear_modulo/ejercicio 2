@@ -1,0 +1,2 @@
+$ drush pmi training_drupal_8
+$ drupal module:install training_drupal_8

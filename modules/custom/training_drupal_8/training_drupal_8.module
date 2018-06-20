@@ -1,0 +1,17 @@
+<?php
+/**
+* @file
+* Contains install and update functions for Forcontu Hello. */
+use Drupal\taxonomy\Entity\Term;
+
+/**
+* Implements hook_install(). */
+function training_drupal_8_install()
+{
+	//1. Creación y asignación de una variable de estado
+	\Drupal::state()->set('training_drupal_8.test', TRUE);
+	//2. Creación de un término de taxonomía
+	$term = Term::create(array( 'name' => t('training term'), 'vid' => 'tags',
+	));
+	$term->save(); 
+}
