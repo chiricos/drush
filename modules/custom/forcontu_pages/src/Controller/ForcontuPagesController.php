@@ -2,14 +2,26 @@
 namespace Drupal\forcontu_pages\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\user\UserInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 class ForcontuPagesController extends ControllerBase
 {
 
-    public function simple()
-    {
-      return array( '#markup' => '<p>' . $this->t('This is a simple page (with no arguments)') . '</p>',);
-    }
+  public function prueba()
+  {
+    return array( '#markup' => '<p>' . $this->t('Hello forcontu') . '</p>',);
+  }
+
+  public function hello()
+  {
+    return array( '#markup' => '<p>' . $this->t('Hello forcontu') . '</p>',);
+  }
+
+  public function simple()
+  {
+    return array( '#markup' => '<p>' . $this->t('This is a simple page (with no arguments)') . '</p>',);
+  }
 
   public function calculator($num1, $num2) {
     if (!is_numeric($num1) || !is_numeric($num2)) {
@@ -76,4 +88,56 @@ class ForcontuPagesController extends ControllerBase
     );
     return $output;
   }
+
+  public function links() {
+    //link to /admin/structure/blocks
+    $url1 = Url::fromRoute('block.admin_display');
+    $link1 = Link::fromTextAndUrl(t('Go to the Block administration page'), $url1);
+    $list[] = $link1;
+
+    //LINK
+    $list[] = $this->t('This text contains a link to %enlace. Just convert it to String to use it into a text.',
+    ['%enlace' => $link1->toString()]);
+
+    //link to <front>
+    $url3 = Url::fromRoute('<front>');
+    $link3 = Link::fromTextAndUrl(t('Go to Front page'), $url3);
+    $list[] = $link3;
+
+    //NODE
+    $url4 = Url::fromRoute('entity.node.canonical', ['node' => 1]); $link4 = Link::fromTextAndUrl(t('Link to node/1'), $url4);
+    $list[] = $link4;
+
+    //link to /node/1/edit
+    $url5 = Url::fromRoute('entity.node.edit_form', ['node' => 1]); $link5 = Link::fromTextAndUrl(t('Link to edit node/1'), $url5);
+    $list[] = $link5;
+
+    //link to https://www.forcontu.com
+    $url6 = Url::fromUri('https://www.forcontu.com');
+    $link6 = Link::fromTextAndUrl(t('Link to www.forcontu.com'), $url6);
+    $list[] = $link6;
+
+    //link to internal css file
+    $url7 = Url::fromUri('internal:/core/themes/bartik/css/layout.css'); $link7 = Link::fromTextAndUrl(t('Link to layout.css'), $url7);
+    $list[] = $link7;
+
+
+    //link to https://www.drupal.org with extra attributes
+    $url8 = Url::fromUri('https://www.drupal.org');
+    $link_options = array( 'attributes' => array(
+    'class' => array( 'external-link', 'list'
+    ),
+    'target' => '_blank',
+    'title' => 'Go to drupal.org',
+    ), );
+    $url8->setOptions($link_options);
+    $link8 = Link::fromTextAndUrl(t('Link to drupal.org'), $url8); $list[] = $link8;
+
+    $output['forcontu_pages_links'] = array( '#theme' => 'item_list',
+    '#items' => $list,
+    '#title' => $this->t('Examples of links:'),
+    );
+    return $output;
+  }
+
 }

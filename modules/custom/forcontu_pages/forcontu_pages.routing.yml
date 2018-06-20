@@ -1,3 +1,19 @@
+forcontu_pages.prueba:
+  path: '/forcontu/prueba'
+  defaults:
+   _controller: '\Drupal\forcontu_pages\Controller\ForcontuPagesController::prueba'
+   _title: 'Prueba'
+  requirements:
+   _permission: 'access content'
+
+forcontu_pages.hello:
+  path: '/forcontu/hello'
+  defaults:
+   _controller: '\Drupal\forcontu_pages\Controller\ForcontuPagesController::hello'
+   _title: 'Helo'
+  requirements:
+   _permission: 'access content'
+
 forcontu_pages.simple:
   path: '/forcontu/pages/simple'
   defaults:
@@ -19,3 +35,26 @@ forcontu_pages.user:
     _controller: '\Drupal\forcontu_pages\Controller\ForcontuPagesController::user'
   requirements:
     _permission: 'access content'
+
+forcontu_pages.links:
+  path: '/forcontu/pages/links'
+  defaults:
+    _controller: '\Drupal\forcontu_pages\Controller\ForcontuPagesController::links'
+  requirements:
+    _permission: 'access content'
+
+forcontu_pages.admin_forcontu:
+  path: '/admin/forcontu'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Forcontu'
+  requirements:
+    _permission: 'access content'
+
+forcontu_pages.admin_forcontu_pages:
+  path: '/admin/forcontu/forcontu_pages'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Forcontu Pages'
+  requirements:
+    _access: 'TRUE'
