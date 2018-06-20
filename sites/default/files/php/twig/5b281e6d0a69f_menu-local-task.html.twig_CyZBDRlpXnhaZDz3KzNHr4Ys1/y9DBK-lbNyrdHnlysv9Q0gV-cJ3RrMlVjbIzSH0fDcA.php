@@ -1,21 +1,16 @@
 <?php
 
-/* core/themes/classy/templates/field/field--text-with-summary.html.twig */
-class __TwigTemplate_d27e7dff4c233dd750e0d55a24ef9defe7e7849370d70ec8406fd8d208d45386 extends Twig_Template
+/* core/themes/classy/templates/navigation/menu-local-task.html.twig */
+class __TwigTemplate_51aa07ae97fc63e4831197eff3dd7f9985d29616e9c69d79e56ec53db7ce7e13 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
         parent::__construct($env);
 
-        // line 1
-        $this->parent = $this->loadTemplate("field--text.html.twig", "core/themes/classy/templates/field/field--text-with-summary.html.twig", 1);
+        $this->parent = false;
+
         $this->blocks = array(
         );
-    }
-
-    protected function doGetParent(array $context)
-    {
-        return "field--text.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
@@ -44,12 +39,18 @@ class __TwigTemplate_d27e7dff4c233dd750e0d55a24ef9defe7e7849370d70ec8406fd8d208d
             throw $e;
         }
 
-        $this->parent->display($context, array_merge($this->blocks, $blocks));
+        // line 17
+        echo "<li";
+        echo $this->env->getExtension('Twig_Extension_Sandbox')->ensureToStringAllowed($this->env->getExtension('Drupal\Core\Template\TwigExtension')->escapeFilter($this->env, $this->getAttribute(($context["attributes"] ?? null), "addClass", array(0 => ((($context["is_active"] ?? null)) ? ("is-active") : (""))), "method"), "html", null, true));
+        echo ">";
+        echo $this->env->getExtension('Twig_Extension_Sandbox')->ensureToStringAllowed($this->env->getExtension('Drupal\Core\Template\TwigExtension')->escapeFilter($this->env, ($context["link"] ?? null), "html", null, true));
+        echo "</li>
+";
     }
 
     public function getTemplateName()
     {
-        return "core/themes/classy/templates/field/field--text-with-summary.html.twig";
+        return "core/themes/classy/templates/navigation/menu-local-task.html.twig";
     }
 
     public function isTraitable()
@@ -59,7 +60,7 @@ class __TwigTemplate_d27e7dff4c233dd750e0d55a24ef9defe7e7849370d70ec8406fd8d208d
 
     public function getDebugInfo()
     {
-        return array (  11 => 1,);
+        return array (  43 => 17,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -72,6 +73,6 @@ class __TwigTemplate_d27e7dff4c233dd750e0d55a24ef9defe7e7849370d70ec8406fd8d208d
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "core/themes/classy/templates/field/field--text-with-summary.html.twig", "/Users/bits/Sites/pruebas/bits/core/themes/classy/templates/field/field--text-with-summary.html.twig");
+        return new Twig_Source("", "core/themes/classy/templates/navigation/menu-local-task.html.twig", "/Users/bits/Sites/pruebas/bits/core/themes/classy/templates/navigation/menu-local-task.html.twig");
     }
 }

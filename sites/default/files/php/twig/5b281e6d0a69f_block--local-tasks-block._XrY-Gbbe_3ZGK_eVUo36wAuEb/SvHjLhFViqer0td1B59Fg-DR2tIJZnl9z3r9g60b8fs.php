@@ -1,28 +1,34 @@
 <?php
 
-/* core/themes/classy/templates/user/user.html.twig */
-class __TwigTemplate_bfde7a0cabc910b92522cc47276ffe1610f10d921564b14f2e0ff5b247003eed extends Twig_Template
+/* core/themes/classy/templates/block/block--local-tasks-block.html.twig */
+class __TwigTemplate_2183288186f52b5c656b2dc3d37ade9010f33ce0d4f941ca065495e96c690a10 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
         parent::__construct($env);
 
-        $this->parent = false;
-
+        // line 1
+        $this->parent = $this->loadTemplate("block.html.twig", "core/themes/classy/templates/block/block--local-tasks-block.html.twig", 1);
         $this->blocks = array(
+            'content' => array($this, 'block_content'),
         );
+    }
+
+    protected function doGetParent(array $context)
+    {
+        return "block.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $tags = array("if" => 20);
-        $filters = array();
+        $tags = array("if" => 9);
+        $filters = array("t" => 10);
         $functions = array();
 
         try {
             $this->env->getExtension('Twig_Extension_Sandbox')->checkSecurity(
                 array('if'),
-                array(),
+                array('t'),
                 array()
             );
         } catch (Twig_Sandbox_SecurityError $e) {
@@ -39,24 +45,31 @@ class __TwigTemplate_bfde7a0cabc910b92522cc47276ffe1610f10d921564b14f2e0ff5b2470
             throw $e;
         }
 
-        // line 19
-        echo "<article";
-        echo $this->env->getExtension('Twig_Extension_Sandbox')->ensureToStringAllowed($this->env->getExtension('Drupal\Core\Template\TwigExtension')->escapeFilter($this->env, $this->getAttribute(($context["attributes"] ?? null), "addClass", array(0 => "profile"), "method"), "html", null, true));
-        echo ">
-  ";
-        // line 20
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 8
+    public function block_content($context, array $blocks = array())
+    {
+        // line 9
+        echo "  ";
         if (($context["content"] ?? null)) {
-            // line 21
+            // line 10
+            echo "    <nav class=\"tabs\" role=\"navigation\" aria-label=\"";
+            echo $this->env->getExtension('Twig_Extension_Sandbox')->ensureToStringAllowed($this->env->getExtension('Drupal\Core\Template\TwigExtension')->renderVar(t("Tabs")));
+            echo "\">
+      ";
+            // line 11
             echo $this->env->getExtension('Twig_Extension_Sandbox')->ensureToStringAllowed($this->env->getExtension('Drupal\Core\Template\TwigExtension')->escapeFilter($this->env, ($context["content"] ?? null), "html", null, true));
+            echo "
+    </nav>
+  ";
         }
-        // line 23
-        echo "</article>
-";
     }
 
     public function getTemplateName()
     {
-        return "core/themes/classy/templates/user/user.html.twig";
+        return "core/themes/classy/templates/block/block--local-tasks-block.html.twig";
     }
 
     public function isTraitable()
@@ -66,7 +79,7 @@ class __TwigTemplate_bfde7a0cabc910b92522cc47276ffe1610f10d921564b14f2e0ff5b2470
 
     public function getDebugInfo()
     {
-        return array (  53 => 23,  50 => 21,  48 => 20,  43 => 19,);
+        return array (  63 => 11,  58 => 10,  55 => 9,  52 => 8,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -79,6 +92,6 @@ class __TwigTemplate_bfde7a0cabc910b92522cc47276ffe1610f10d921564b14f2e0ff5b2470
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "core/themes/classy/templates/user/user.html.twig", "/Users/bits/Sites/pruebas/bits/core/themes/classy/templates/user/user.html.twig");
+        return new Twig_Source("", "core/themes/classy/templates/block/block--local-tasks-block.html.twig", "/Users/bits/Sites/pruebas/bits/core/themes/classy/templates/block/block--local-tasks-block.html.twig");
     }
 }

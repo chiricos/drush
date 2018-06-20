@@ -36,3 +36,31 @@ forcontu_pages.links:
   route_name: forcontu_pages.links
   parent: forcontu_pages.admin_forcontu_pages
   weight: 2
+
+
+forcontu_pages.calculator:
+  title: 'Calculator'
+  description: 'Calculator'
+  route_name: forcontu_pages.calculator
+  route_parameters:
+    num1: 14
+    num2: 7
+  parent: forcontu_pages.admin_forcontu_pages
+  weight: 3
+
+forcontu_pages.user:
+  title: 'User page'
+  description: 'User page'
+  route_name: forcontu_pages.user
+  route_parameters:
+    user: 1
+  parent: forcontu_pages.admin_forcontu_pages
+  weight: 4
+
+forcontu_pages.tabs:
+  title: 'Tabs'
+  description: 'Tabs'
+  route_name: forcontu_pages.tab1
+  parent: forcontu_pages.admin_forcontu_pages
+  weight: 5
+
