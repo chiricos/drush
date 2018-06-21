@@ -1,35 +1,35 @@
 <?php
 
-/* core/themes/seven/templates/block--local-actions-block.html.twig */
-class __TwigTemplate_81debda05de8a0993a63e936e7b6c89520d588fc374cb00cf2e7d137991f8767 extends Twig_Template
+/* core/themes/bartik/templates/status-messages.html.twig */
+class __TwigTemplate_3c6bc863c95ccfb9739f52e689f228b0c543128a6821b79dd8314842ab507428 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
     {
         parent::__construct($env);
 
         // line 1
-        $this->parent = $this->loadTemplate("@block/block.html.twig", "core/themes/seven/templates/block--local-actions-block.html.twig", 1);
+        $this->parent = $this->loadTemplate("@classy/misc/status-messages.html.twig", "core/themes/bartik/templates/status-messages.html.twig", 1);
         $this->blocks = array(
-            'content' => array($this, 'block_content'),
+            'messages' => array($this, 'block_messages'),
         );
     }
 
     protected function doGetParent(array $context)
     {
-        return "@block/block.html.twig";
+        return "@classy/misc/status-messages.html.twig";
     }
 
     protected function doDisplay(array $context, array $blocks = array())
     {
-        $tags = array("if" => 9);
+        $tags = array("if" => 22);
         $filters = array();
-        $functions = array();
+        $functions = array("attach_library" => 23);
 
         try {
             $this->env->getExtension('Twig_Extension_Sandbox')->checkSecurity(
                 array('if'),
                 array(),
-                array()
+                array('attach_library')
             );
         } catch (Twig_Sandbox_SecurityError $e) {
             $e->setSourceContext($this->getSourceContext());
@@ -48,26 +48,29 @@ class __TwigTemplate_81debda05de8a0993a63e936e7b6c89520d588fc374cb00cf2e7d137991
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 8
-    public function block_content($context, array $blocks = array())
+    // line 21
+    public function block_messages($context, array $blocks = array())
     {
-        // line 9
+        // line 22
         echo "  ";
-        if (($context["content"] ?? null)) {
-            // line 10
-            echo "    <ul class=\"action-links\">
-      ";
-            // line 11
-            echo $this->env->getExtension('Twig_Extension_Sandbox')->ensureToStringAllowed($this->env->getExtension('Drupal\Core\Template\TwigExtension')->escapeFilter($this->env, ($context["content"] ?? null), "html", null, true));
+        if ( !twig_test_empty(($context["message_list"] ?? null))) {
+            // line 23
+            echo "    ";
+            echo $this->env->getExtension('Twig_Extension_Sandbox')->ensureToStringAllowed($this->env->getExtension('Drupal\Core\Template\TwigExtension')->escapeFilter($this->env, $this->env->getExtension('Drupal\Core\Template\TwigExtension')->attachLibrary("bartik/messages"), "html", null, true));
             echo "
-    </ul>
+    <div class=\"messages__wrapper layout-container\">
+      ";
+            // line 25
+            $this->displayParentBlock("messages", $context, $blocks);
+            echo "
+    </div>
   ";
         }
     }
 
     public function getTemplateName()
     {
-        return "core/themes/seven/templates/block--local-actions-block.html.twig";
+        return "core/themes/bartik/templates/status-messages.html.twig";
     }
 
     public function isTraitable()
@@ -77,7 +80,7 @@ class __TwigTemplate_81debda05de8a0993a63e936e7b6c89520d588fc374cb00cf2e7d137991
 
     public function getDebugInfo()
     {
-        return array (  61 => 11,  58 => 10,  55 => 9,  52 => 8,  11 => 1,);
+        return array (  64 => 25,  58 => 23,  55 => 22,  52 => 21,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -90,6 +93,6 @@ class __TwigTemplate_81debda05de8a0993a63e936e7b6c89520d588fc374cb00cf2e7d137991
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "core/themes/seven/templates/block--local-actions-block.html.twig", "/Users/bits/Sites/pruebas/bits/core/themes/seven/templates/block--local-actions-block.html.twig");
+        return new Twig_Source("", "core/themes/bartik/templates/status-messages.html.twig", "/Users/bits/Sites/pruebas/bits/core/themes/bartik/templates/status-messages.html.twig");
     }
 }

@@ -175,5 +175,8 @@ $ drupal router:debug
 # recontruir rutas
 $ drupal router:rebuild
 
+# Si no introducimos los parámetros adicionales en options, la consola los irá solicitando de forma interactiva.
+$ drupal generate:form
+
 
 

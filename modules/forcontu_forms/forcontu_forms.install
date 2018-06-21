@@ -1,0 +1,50 @@
+<?php
+
+function forcontu_forms_schema() {
+  $schema['forcontu_forms_simple'] =
+  array( 'description' => 'Stores Simple form data', 'fields' =>
+    array(
+    'id' => array(
+    'type' => 'serial',
+    'not null' => TRUE,
+    'description' => "ID autoincrement",
+    ),
+    'title' => array(
+    'type' => 'varchar', 'length' => 255,
+    'not null' => TRUE, 'default' => '', 'description' => 'Title',
+    ),
+    'color' => array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'default' => 0,
+    'size' => 'tiny', 'description' => 'Color code',
+    ),
+    'username' => array(
+    'type' => 'varchar', 'length' => 255,
+    'not null' => TRUE, 'default' => '', 'description' => 'Username',
+    ),
+    'email' => array(
+    'type' => 'varchar', 'length' => 255,
+    'not null' => TRUE, 'default' => '', 'description' => 'Email',
+    ),
+    'uid' => array(
+    'type' => 'int',
+    'unsigned' => TRUE,
+    'not null' => TRUE,
+    'default' => 0,
+    'description' => 'The uid of the user who submitted the form.',
+    ),
+    'ip' => array(
+    'type' => 'varchar', 'length' => 128,
+    'not null' => TRUE, 'default' => '', 'description' => 'User IP',
+    ),
+    'timestamp' => array(
+    'type' => 'int',
+    'not null' => TRUE,
+    'default' => 0,
+    'description' => 'Unix timestamp indicating when the form was submitted.',
+    ), ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}

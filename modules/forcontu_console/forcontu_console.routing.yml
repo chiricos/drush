@@ -6,3 +6,12 @@ forcontu_console.forcontu_console_controller_consolePage:
     _title: 'Console page'
   requirements:
     _permission: 'access content'
+
+forcontu_console.simple_form:
+  path: '/forcontu_console/form/simple'
+  defaults:
+    _form: '\Drupal\forcontu_console\Form\SimpleForm'
+    _title: 'SimpleForm'
+  requirements:
+    _access: 'TRUE'
+  

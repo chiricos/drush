@@ -1,6 +1,6 @@
 <?php
 
-/* core/themes/classy/templates/misc/status-messages.html.twig */
+/* @classy/misc/status-messages.html.twig */
 class __TwigTemplate_59accd533e70f4d1c54f318bf02ba4ba1f2365cc34283e268db54ff5c097af40 extends Twig_Template
 {
     public function __construct(Twig_Environment $env)
@@ -127,7 +127,7 @@ $context["type"]));
 
     public function getTemplateName()
     {
-        return "core/themes/classy/templates/misc/status-messages.html.twig";
+        return "@classy/misc/status-messages.html.twig";
     }
 
     public function getDebugInfo()
@@ -145,6 +145,6 @@ $context["type"]));
 
     public function getSourceContext()
     {
-        return new Twig_Source("", "core/themes/classy/templates/misc/status-messages.html.twig", "/Users/bits/Sites/pruebas/bits/core/themes/classy/templates/misc/status-messages.html.twig");
+        return new Twig_Source("", "@classy/misc/status-messages.html.twig", "/Users/bits/Sites/pruebas/bits/core/themes/classy/templates/misc/status-messages.html.twig");
     }
 }
