@@ -14,4 +14,21 @@ bits_pages.calculator:
     num2: 10
     _title: 'Calculadora'
   requirements:
+    _permission: 'access calculator'
+
+bits_pages.links:
+  path: '/bits_pages/links'
+  defaults:
+    _controller:  '\Drupal\bits_pages\Controller\BitsPagesController::links'
+    _title: 'Enlaces'
+  requirements:
+    _access: 'TRUE'
+
+bits_pages.user:
+  path: '/bits_pages/user/{user}'
+  defaults:
+    _controller:  '\Drupal\bits_pages\Controller\BitsPagesController::user'
+    user: 1
+    _title: 'Enlaces'
+  requirements:
     _permission: 'access content'
