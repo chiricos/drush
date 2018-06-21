@@ -1,0 +1,8 @@
+
+forcontu_console.forcontu_console_controller_consolePage:
+  path: '/forcontu/console/page'
+  defaults:
+    _controller: '\Drupal\forcontu_console\Controller\ForcontuConsoleController::consolePage'
+    _title: 'Console page'
+  requirements:
+    _permission: 'access content'

@@ -13,11 +13,11 @@ $ drupal site:status
 
 Para el sitio a modo de mantenimiento (on), y viceversa (off).
 $ drupal site:maintenance on
-$ drupal site:maintenance off 
+$ drupal site:maintenance off
 
 
 # Muestra algunas estadísticas relacionadas con los elementos creados en el sitio: número de nodos por tipo de contenido, comentarios, usuarios, vistas, módulos instalados, etc.
-$ drupal site:statistics	
+$ drupal site:statistics
 
 # Comprueba si hay actualizaciones pendientes.
 $ drupal update:debug
@@ -35,7 +35,7 @@ $ drupal module:uninstall token
 # descarga el modulo sin instalarlo
 $ drupal module:download rules
 
-# Devuelve la ruta donde está instalado el módulo. 
+# Devuelve la ruta donde está instalado el módulo.
 $ drupal module:path módulo
 $ drupal module:path rules
 
@@ -58,21 +58,21 @@ $ drupal database:log:clear 48
 $ drupal database:log:clear --type='cron'
 $ drupal database:log:clear
 
-# Muestra el valor de una variable de estado. 
+# Muestra el valor de una variable de estado.
 $ drupal state:debug variable
 $ drupal state:debug system.cron_last
 
 # Asigna un valor a una variable de estado. Si la variable no existe, la crea. drupal state:override variable valor
 $ drupal state:override system.maintenance_mode 1
 
-# Elimina una variable de estado. 
+# Elimina una variable de estado.
 $ drupal state:delete variable
 $ drupal state:delete system.maintenance_mode
 
 
 GESTIONAR CONFIGURACIÓN
 
-# Muestra el valor de un objeto de configuración. 
+# Muestra el valor de un objeto de configuración.
 $ drupal config:debug objeto
 $ drupal config:debug system.site
 
@@ -96,7 +96,7 @@ $ drupal config:export
 # Importa la configuración desde el directorio de exportación a la configuración activa.
 $ drupal config:import
 
-# Importa un único objeto de configuración desde el archivo especificado. 
+# Importa un único objeto de configuración desde el archivo especificado.
 $ drupal config:import:single objeto ruta
 $ drupal config:import:single system.date system.date.yml
 
@@ -134,7 +134,7 @@ $ drupal create:nodes article --limit=5 --title-words=4 --time-range=Y
 # Crea comentarios de relleno en el nodo indicado.
 $ drupal create:comments 1 --limit=5 --title-words=3 --time-range=W
 
-# Crea usuarios de relleno. 
+# Crea usuarios de relleno.
 $ drupal create:users gestor,authenticated --limit 5 --password=test --time-range=M
 
 # Crea vocabularios de relleno.
@@ -165,10 +165,15 @@ Would you like to add module dependencies (yes/no) [no]: > yes
 Module dependencies separated by commas (i.e. context, panels): > ctools, token
 Do you confirm generation? (yes/no) [yes]: > yes
 
-# Genera el archivo .module del módulo indicado. 
+# Genera el archivo .module del módulo indicado.
 $ drupal generate:module:file options
 Enter the module name [forcontu_hello]: >
 Do you confirm generation? (yes/no) [yes]: > yes
 
+# ver listado y detalle de las rutas
+$ drupal router:debug
+# recontruir rutas
+$ drupal router:rebuild
 
- 
+
+
