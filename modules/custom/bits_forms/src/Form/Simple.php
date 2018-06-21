@@ -1,5 +1,5 @@
 <?php
-namespace Drupal\forcontu_forms\Form;
+namespace Drupal\bits_forms\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -31,31 +31,9 @@ class Simple extends FormBase {
 
     $form['title'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Title'),
-      '#description' => $this->t('The title must be at least 5characters long.'),
+      '#title' => $this->t('Título'),
+      '#description' => $this->t('Escribe el titulo.'),
       '#required' => TRUE,
-    ];
-
-    $form['color'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Color'), '#options' => [
-        0 => $this->t('Black'),
-        1 => $this->t('Red'),
-        2 => $this->t('Blue'),
-        3 => $this->t('Green'),
-        4 => $this->t('Orange'),
-        5 => $this->t('White'),
-      ],
-      '#default_value' => 2,
-      '#description' => $this->t('Choose a color.'),
-    ];
-
-    $form['actions'] = [
-      '#type' => 'actions',
-      ];
-    $form['actions']['submit'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Submit'),
     ];
 
     $form['username'] = [
@@ -68,7 +46,15 @@ class Simple extends FormBase {
 
     $form['user_email'] = [
       '#type' => 'email',
-      '#title' => $this->t('User email'), '#description' => $this->t('Your email.'), '#required' => TRUE,
+      '#title' => $this->t('User email'),
+      '#description' => $this->t('Your email.'),
+      '#default_value'  =>  $this->currentUser->getEmail(),
+      '#required' => TRUE,
+    ];
+
+    $form['submit'] = [
+      '#type' =>  'submit',
+      '#value'  => $this->t('Enviar'),
     ];
 
 
@@ -81,8 +67,12 @@ class Simple extends FormBase {
 
   public function validateForm(array &$form, FormStateInterface $form_state) {
     $title = $form_state->getValue('title');
-    if (strlen($title) < 5) {
-      $form_state->setErrorByName('title', $this->t('The title must be at least 5 characters long.'));
+    if (strlen($title) < 5 OR strlen($title) > 30) {
+      $form_state->setErrorByName('title', $this->t('El titulo debe estar entre 5 y 30 caracteres.'));
+    }
+
+    if(ctype_upper(substr($title,0,1)) != 1){
+      $form_state->setErrorByName('title', $this->t('El titulo debe comenzar con mayus.'));
     }
 
     $email = $form_state->getValue('user_email');
@@ -92,22 +82,7 @@ class Simple extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->database->insert('forcontu_forms_simple') ->fields([
-      'title' => $form_state->getValue('title'),
-      'color' => $form_state->getValue('color'),
-      'username' => $form_state->getValue('username'),
-      'email' => $form_state->getValue('user_email'),
-      'uid' => $this->currentUser->id(),
-      'ip' => \Drupal::request()->getClientIP(),
-      'timestamp' => REQUEST_TIME, ])->execute();
 
-      drupal_set_message($this->t('The form has been submitted correctly'));
-      \Drupal::logger('forcontu_forms')->notice('New Simple Form entry from user %username inserted: %title.',
-        [
-        '%username' => $form_state->getValue('username'), '%title' => $form_state->getValue('title'),
-        ]
-      );
-      $form_state->setRedirect('forcontu_pages.simple');
 
   }
 }

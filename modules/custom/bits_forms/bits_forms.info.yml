@@ -1,0 +1,5 @@
+name: BITS Forms
+type: module
+description: 'Bits Displays a basic form.'
+package: BITS
+core: 8.x
