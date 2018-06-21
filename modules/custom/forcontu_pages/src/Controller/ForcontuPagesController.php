@@ -4,9 +4,25 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\user\UserInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Session\AccountInterface;
 
 class ForcontuPagesController extends ControllerBase
 {
+
+  protected $currentUser;
+
+  public function __construct(AccountInterface $current_user)
+  {
+    $this->currentUser = $current_user;
+  }
+
+  public static function create(ContainerInterface $container)
+  {
+    return new static(
+      $container->get('current_user')
+    );
+  }
 
   public function prueba()
   {
@@ -23,7 +39,8 @@ class ForcontuPagesController extends ControllerBase
     return array( '#markup' => '<p>' . $this->t('This is a simple page (with no arguments)') . '</p>',);
   }
 
-  public function calculator($num1, $num2) {
+  public function calculator($num1, $num2)
+  {
     if (!is_numeric($num1) || !is_numeric($num2)) {
       throw new BadRequestHttpException(t('No numeric arguments specified.'));
     }
@@ -141,9 +158,12 @@ class ForcontuPagesController extends ControllerBase
   }
 
   public function tab1() {
-    return array(
-      '#markup' => '<p>' . $this->t('This is the content of Tab 1') . '</p>',
-    );
+    $output = '<p>' . $this->t('This is the content of Tab 1') . '</p>';
+    if($this->currentUser->hasPermission('administer nodes')){ $output .= $this->t('This extra text is only displayed if the
+      current user can administer nodes.') . '</p>'; }
+      return array(
+        '#markup' => $output,
+      );
   }
   public function tab2()
   {
