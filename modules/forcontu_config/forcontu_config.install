@@ -1,0 +1,48 @@
+<?php
+
+function forcontu_config_install() {
+  $site_mail = \Drupal::config('system.site')->get('mail');
+  $site_name = \Drupal::config('system.site')->get('name');
+  \Drupal::configFactory()
+    ->getEditable('forcontu_config.settings')
+    ->set('newsletter.default_from_email', $site_mail)
+    ->set('newsletter.subject', $site_name)
+    ->save();
+}
+
+function forcontu_config_schema() { $schema['file_usage'] = array(
+  'description' => 'Track where a file is used.', 'fields' => array(
+  'fid' => array(
+  'description' => 'File ID.', 'type' => 'int',
+  'unsigned' => TRUE,
+  'not null' => TRUE,
+  ),
+  'module' => array(
+  'description' => 'The name of the module that is using the file.', 'type' => 'varchar_ascii',
+  'length' => DRUPAL_EXTENSION_NAME_MAX_LENGTH,
+  'not null' => TRUE,
+          'default' => '',
+        ),
+  'type' => array(
+  'description' => 'The name of the object type in which the file is used.', 'type' => 'varchar_ascii',
+  'length' => 64,
+  'not null' => TRUE,
+  'default' => '',
+  ),
+  'id' => array(
+  'description' => 'The primary key of the object using the file.', 'type' => 'varchar_ascii',
+  'length' => 64,
+  'not null' => TRUE,
+          'default' => 0,
+        ),
+  'count' => array(
+  'description' => 'The number of times this file is used...', 'type' => 'int',
+  'unsigned' => TRUE,
+  'not null' => TRUE,
+  'default' => 0,
+  ), ),
+  'primary key' => array('fid', 'type', 'id', 'module'), 'indexes' => array(
+  'type_id' => array('type', 'id'), 'fid_count' => array('fid', 'count'), 'fid_module' => array('fid', 'module'),
+  ), );
+  return $schema;
+}

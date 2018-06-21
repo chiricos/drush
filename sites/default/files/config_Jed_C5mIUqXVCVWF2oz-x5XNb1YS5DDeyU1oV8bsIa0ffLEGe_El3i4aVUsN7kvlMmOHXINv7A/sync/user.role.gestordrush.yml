@@ -1,0 +1,14 @@
+uuid: null
+langcode: en
+status: true
+dependencies: {  }
+id: gestordrush
+label: 'Gestor Drush'
+weight: 4
+is_admin: null
+permissions:
+  - 'access calculator'
+  - 'access content overview'
+  - 'access tab2 page'
+  - 'access toolbar'
+  - 'administer nodes'

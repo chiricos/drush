@@ -1,0 +1,49 @@
+$val = \Drupal::state()->get('key');
+$val = \Drupal::state()->get('key', 'default');
+Ejemplo:
+$cron_last = \Drupal::state()->get('system.cron_last');
+$maintenance_mode = \Drupal::state()->get('system.maintenance_mode', 0);
+
+
+$pairs = \Drupal::state()->getMultiple($keys);
+Ejemplo:
+$maintenance_mode = $pairs['system.maintenance_mode'];
+$cron_last = $pairs['system.cron_last'];
+
+\Drupal::state()->set('key','value');
+\Drupal::state()->set('module.variable',123);
+
+\Drupal::state()->setMultiple($keyvalues);
+$keyvalues = [ 'module.variable1' => 123, 'module.variable2' => 'foo',
+]; \Drupal::state()->setMultiple($keyvalues);
+
+
+\Drupal::state()->delete('key');
+\Drupal::state()->delete('module.variable');
+
+\Drupal::state()->deleteMultiple($keys);
+$keys = ['module.variable1', 'module.variable2']; \Drupal::state()->deleteMultiple($keys);
+
+Ten en cuenta que durante la desinstalación de un módulo, será necesario eliminar las variables de estado creadas. Lo haremos en la implementación de hook_uninstall().
+A continuación se muestra, a modo de ejemplo, la implementación de hook_uninstall() del módulo Locale del núcleo.
+/**
+* Implements hook_uninstall(). */
+function locale_uninstall() { // ...
+// Clear variables.
+\Drupal::state()->delete('system.javascript_parsed'); \Drupal::state()->delete('locale.translation.plurals'); \Drupal::state()->delete('locale.translation.javascript');
+}
+
+
+Una vez cargado el objeto de configuración, podemos obtener el valor de una variable usando el método get(). Por ejemplo:
+$config = \Drupal::config('system.maintenance'); $message = $config->get('message');
+Esta llamada también se puede hacer en un único paso, mediante encadenamiento:
+$config = \Drupal::config('system.maintenance')->get('message'); Para llegar a una variable anidada, debemos especificar todas las variables
+"padre", en orden, separadas por punto (.):
+$config = \Drupal::config('system.performance'); $max_age = $config->get('cache.page.max_age');
+
+Vamos a realizar un cambio de configuración por programación que podamos apreciar desde la interfaz de usuario.
+$config = \Drupal::service('config.factory')->getEditable('system.date'); //asigna un valor único
+$config->set('country.default', 'US');
+ //asigna un array
+$timezone = ['warn' => TRUE, 'default' => 1]; $config->set('timezone.user', $timezone);
+$config->save();

@@ -26,3 +26,12 @@ function forcontu_pages_toolbar_alter(&$items) {
   $items['administration']['#attached']['library'][] =
   'forcontu_pages/forcontu_pages.css';
 }
+
+function forcontu_pages_install()
+{
+  $config = \Drupal::service('config.factory')->getEditable('system.date'); //asigna un valor único
+  $config->set('country.default', 'US');
+  //asigna un array
+  $timezone = ['warn' => TRUE, 'default' => 1]; $config->set('timezone.user', $timezone);
+  $config->save();
+}

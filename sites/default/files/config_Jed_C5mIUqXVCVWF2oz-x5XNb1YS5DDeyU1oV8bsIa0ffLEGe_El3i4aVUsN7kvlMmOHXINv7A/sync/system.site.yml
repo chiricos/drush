@@ -1,0 +1,14 @@
+uuid: 9e144567-fde1-4c22-9a54-424820203225
+name: bits
+mail: edward.diaz@bitsamericas.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: es
+default_langcode: es
+_core:
+  default_config_hash: yXadRE77Va-G6dxhd2kPYapAvbnSvTF6hO4oXiOEynI

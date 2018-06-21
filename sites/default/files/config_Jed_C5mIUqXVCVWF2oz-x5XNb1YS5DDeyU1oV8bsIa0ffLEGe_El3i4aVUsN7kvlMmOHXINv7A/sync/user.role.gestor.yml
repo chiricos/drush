@@ -1,0 +1,11 @@
+uuid: a9bd08d5-f9a2-4828-99bc-b690ddc9ab23
+langcode: es
+status: true
+dependencies: {  }
+id: gestor
+label: Gestor
+weight: 5
+is_admin: null
+permissions:
+  - 'access calculator'
+  - 'access toolbar'

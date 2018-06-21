@@ -1,0 +1,8 @@
+CREACIÓN DE TABLAS
+
+# Si no utilizamos ningún argumento, muestra un listado de todas las tablas de la base de datos especificada.
+$ drupal database:table:debug
+
+# Si indicamos un nombre de tabla, muestra sus campos.
+$ drupal database:table:debug tabla
+$ drupal database:table:debug watchdog
