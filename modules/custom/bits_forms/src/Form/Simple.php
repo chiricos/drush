@@ -82,6 +82,21 @@ class Simple extends FormBase {
   }
 
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $this->database->insert('bits_forms_simple') ->fields([
+      'title' => $form_state->getValue('title'),
+      'username' => $form_state->getValue('username'),
+      'email' => $form_state->getValue('user_email'),
+      'uid' => $this->currentUser->id(),
+      'ip' => \Drupal::request()->getClientIP(),
+      'timestamp' => REQUEST_TIME, ])->execute();
+
+      drupal_set_message($this->t('The form has been submitted correctly'));
+      \Drupal::logger('bits_forms')->notice('New Simple Form entry from user %username inserted: %title.',
+        [
+        '%username' => $form_state->getValue('username'), '%title' => $form_state->getValue('title'),
+        ]
+      );
+      $form_state->setRedirect('bits_pages.simple');
 
 
   }
