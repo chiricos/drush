@@ -1,0 +1,5 @@
+name: BITS database
+type: module
+description: 'Bits Database'
+package: BITS
+core: 8.x

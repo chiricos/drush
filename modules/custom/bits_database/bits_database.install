@@ -1,0 +1,91 @@
+<?php
+
+  function bits_database_schema(){
+
+    $schema['bits_database_example'] = [
+      'description' =>  'Base de datos de ejemplo para bists',
+      'fields'  =>  [
+        'id'  => [
+          'type'  =>  'serial',
+          'not null'  => TRUE,
+          'description' => "ID autoincrement",
+        ],
+        'uid' =>  [
+          'type'  =>  'int',
+          'unsigned'  =>  TRUE,
+          'not null'  =>  TRUE,
+          'default' =>  0,
+          'description' =>  'The uid of the user who submitted the form.',
+        ],
+        'status' =>  [
+          'type'  =>  'int',
+          'size'  =>  'small',
+          'unsigned'  =>  TRUE,
+          'not null'  =>  TRUE,
+          'default' =>  0,
+          'description' =>  'The status of the user who submitted the form.',
+        ],
+        'title' =>  [
+          'type'  =>  'varchar',
+          'length'  =>  255,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'type' =>  [
+          'type'  =>  'varchar',
+          'length'  =>  64,
+          'not null' => TRUE,
+          'default' => '',
+        ],
+        'ip'  =>  [
+          'type'  =>  'varchar',
+          'length'  => 128,
+          'not null'  => TRUE,
+          'default' =>  '',
+          'description' =>  'ip user',
+        ],
+        'timestamp' =>  [
+          'type'  =>  'int',
+          'not null'  => true,
+          'default' =>  0,
+          'description' =>  'fecha de creacion',
+        ],
+      ],
+      'primary key' =>  ['id']
+    ];
+
+    $schema['bits_database_counter'] = [
+      'description' =>  'Base de datos de ejemplo para bists',
+      'fields'  =>  [
+        'route'  => [
+          'type'  =>  'varchar',
+          'length'  =>  150,
+          'not null'  => TRUE,
+          'description' => "ID autoincrement",
+        ],
+        'uid' =>  [
+          'type'  =>  'int',
+          'unsigned'  =>  TRUE,
+          'not null'  =>  TRUE,
+          'default' =>  0,
+          'description' =>  'The uid of the user who submitted the form.',
+        ],
+        'user_count' =>  [
+          'type'  =>  'int',
+          'not null'  =>  TRUE,
+          'default' =>  0,
+          'description' =>  'The status of the user who submitted the form.',
+        ],
+        'lastcount' =>  [
+          'type'  =>  'int',
+          'not null'  => true,
+          'default' =>  0,
+          'description' =>  'fecha de creacion',
+        ],
+
+      ],
+      'primary key' =>  ['route','uid']
+    ];
+
+    return $schema;
+  }
