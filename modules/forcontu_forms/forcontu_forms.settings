@@ -1,0 +1,7 @@
+<?php
+
+protected function getEditableConfigNames() {
+  return [
+    'forcontu_forms.settings'
+  ];
+}

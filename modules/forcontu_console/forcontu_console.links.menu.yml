@@ -1,0 +1,7 @@
+forcontu_console.forcontu_config_form:
+  title: 'Forcontu Console Config'
+  route_name: forcontu_console.forcontu_config_form
+  description: 'A description for the menu entry'
+  parent: system.admin_config_development
+  weight: 99
+

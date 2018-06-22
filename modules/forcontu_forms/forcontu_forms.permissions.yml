@@ -1,0 +1,4 @@
+forcontu form access:
+  title: 'Forcontu form access'
+  description: 'Access form'
+  configure: forcontu_forms.settings

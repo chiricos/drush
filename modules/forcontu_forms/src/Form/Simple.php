@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Session\AccountInterface;
 use Egulias\EmailValidator\EmailValidator;
+use Drupal\Core\Access\AccessResult;
 
 class Simple extends FormBase {
 
@@ -29,6 +30,10 @@ class Simple extends FormBase {
 
   public function buildForm(array $form, FormStateInterface $form_state) {
 
+    $form['foo']['#access'] = TRUE; // Se muestra
+    $form['bar']['#access'] = FALSE; // No se muestra
+    $form['foo']['#access'] =$this->currentUser()->hasPermission('administer image styles');
+    $form['bar']['#access'] = $this->currentUser()->isAnonymous();
     $form['title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
@@ -68,8 +73,11 @@ class Simple extends FormBase {
 
     $form['user_email'] = [
       '#type' => 'email',
-      '#title' => $this->t('User email'), '#description' => $this->t('Your email.'), '#required' => TRUE,
-    ];
+      '#title' => $this->t('User email'),
+      '#description' => $this->t('Your email.'),
+      //'#access_callback' => ['\Drupal\forcontu_forms\Form\Simple','checkEmailAccess'],
+      ];
+
 
 
     return $form;
@@ -110,4 +118,14 @@ class Simple extends FormBase {
       $form_state->setRedirect('forcontu_pages.simple');
 
   }
+
+  public function access(AccountInterface $account) {
+    return AccessResult::allowedIf($account->hasPermission('forcontu form access') && $account->hasPermission('administer site configuration'));
+  }
+
+  public function checkEmailAccess($element) {
+    $currentUser = \Drupal::currentUser();
+    return ($currentUser->id() != 1) && $currentUser->hasPermission('forcontu form access');
+  }
+
 }
