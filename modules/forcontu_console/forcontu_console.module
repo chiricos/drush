@@ -1,0 +1,31 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter() on behalf of forcontu_console.module.
+ */
+function forcontu_console_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+    // Change form id here
+    if ($form_id == 'form_test_alter_form') {
+        drupal_set_message('form_test_form_alter() executed.');
+
+        $form['note'] = [
+            '#type' => 'textfield',
+            '#title' => t('Note'),'#description' => t(''),
+    '#maxlength' => 64,
+    '#size' => 64,
+    '#weight' => '0',
+            ];
+
+    }
+}
+
+
+/**
+ * Implements hook_form_FORM_ID_alter() on behalf of forcontu_console.module.
+ * @see \Array method Array at Array
+ */
+function forcontu_console_form_system_site_information_settings_alter(&$form, FormStateInterface $form_state) {
+    drupal_set_message('forcontu_console_form_system_site_information_settings_alter() executed.');
+
+}
