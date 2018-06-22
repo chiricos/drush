@@ -60,7 +60,13 @@ class BookNavigationBlock extends BlockBase implements ContainerFactoryPluginInt
    * @param \Drupal\Core\Entity\EntityStorageInterface $node_storage
    *   The node storage.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, RequestStack $request_stack, BookManagerInterface $book_manager, EntityStorageInterface $node_storage) {
+  public function __construct(
+        array $configuration,
+        $plugin_id, $plugin_definition,
+        RequestStack $request_stack,
+        BookManagerInterface $book_manager,
+        EntityStorageInterface $node_storage) {
+
     parent::__construct($configuration, $plugin_id, $plugin_definition);
 
     $this->requestStack = $request_stack;
@@ -77,8 +83,7 @@ class BookNavigationBlock extends BlockBase implements ContainerFactoryPluginInt
       $plugin_id,
       $plugin_definition,
       $container->get('request_stack'),
-      $container->get('book.manager'),
-      $container->get('entity.manager')->getStorage('node')
+      $container->get('book.manager')
     );
   }
 
