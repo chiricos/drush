@@ -46,7 +46,7 @@ class HighlightedContentBlock extends BlockBase implements ContainerFactoryPlugi
     $block_message = $this->configuration['block_message'];
     // 1
     $build[] = [
-      '#markup' => '<h3>'.$this->t($block_message).'</h3>',
+      '#markup' => '<span>'.$this->currentUser->getAccountName().'</span><h3>'.$this->t($block_message).'</h3>',
     ];
     // 2a
     $result = $this->database->select('forcontu_forms_simple', 'f')->fields('f', ['uid'])
