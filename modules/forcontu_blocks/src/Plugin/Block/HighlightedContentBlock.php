@@ -9,8 +9,10 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Database\Connection;
+use Drupal\Core\Access\AccessResult;
 
-/**
+/*
+*
 * Provides the HighlightedContent block.
 *
 *   @Block(
@@ -90,4 +92,9 @@ class HighlightedContentBlock extends BlockBase implements ContainerFactoryPlugi
     );
     return $form;
   }
+
+  protected function blockAccess(AccountInterface $account) {
+    return AccessResult::allowedIfHasPermission($account, 'access content');
+  }
+
 }
