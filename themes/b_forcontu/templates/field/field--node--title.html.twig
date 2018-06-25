@@ -1,0 +1,99 @@
+{#
+/**
+ * @file
+ * Theme override for the node title field.
+ *
+ * This is an override of field.html.twig for the node title field. See that
+ * template for documentation about its details and overrides.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing span element.
+ * - items: List of all the field items. Each item contains:
+ *   - attributes: List of HTML attributes for each item.
+ *   - content: The field item content.
+ * - entity_type: The entity type to which the field belongs.
+ * - field_name: The name of the field.
+ * - field_type: The type of the field.
+ * - label_display: The display settings for the label.
+ *
+ * @see field.html.twig
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+<span{{ attributes.addClass(classes) }}>
+  {%- for item in items -%}
+    {% filter upper %}
+      {{ item.content }}
+    {% endfilter %}
+  {%- endfor -%}
+
+  ------------------<br>
+  {% set foo = 'welcome' %} {{ foo|upper }}
+  {# La salida será: WELCOME #}
+  {{ 'welcome'|upper }}
+  {# también se puede utilizar el filtro directamente sobre una cadena, obteniéndose el mismo resultado
+  #}
+  ------------------<br>
+  {{ 'WELCOME'|lower }}
+  {# Resultado: welcome #}
+  ------------------<br>
+  {{ 'welcome home'|capitalize }}
+  {# Resultado: Welcome home #}
+  ------------------<br>
+  {{'welcome home'|capitalize }}
+  {# Resultado: Welcome Home #}
+  ------------------<br>
+  {{ "now"|date("d/m/Y") }}
+  {# Resultado: 13/02/2016 #}
+  ------------------<br>
+  {{[1, 2, 3]|join }}
+  {# Resultado: 123 #}
+
+  {{ [1, 2, 3]|join(',') }}
+  {# Resultado: 1,2,3 #}
+  ------------------<br>
+  {% set foo = [3, 2, 4, 1]|sort %}
+  {# El contenido de la variable for será: [1, 2, 3, 4] #}
+  ------------------<br>
+  {% set count = users|length %}
+  {# Almacena en la variable count el número de elementos de user #}
+</span>
+
+<div >
+<h3>Traducciones</h3>
+<a href="{{ url('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">{{ 'Home'|t }}</a>
+<h2>{{ 'Book traversal links for'|t }} {{ book_title }}</h2> <b>{{ 'Not triggered'|t }}</b>
+{% trans %}
+Submitted by {{ author_name }} on {{ date }}
+{% endtrans %}
+<br>
+{% trans %}
+  Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+{% trans %}
+<br>
+This {{ token.name }} has a length of: {{ count }}. It contains:
+{{ token.numbers|placeholder }} and {{ token.bad_text }}. {% endtrans %}
+</div>
+<div>
+placeholder
+{% set temp = 'The value is < 5' %} {{ temp|placeholder }}
+</div>
+
+<div>
+<h3>usuarios</h3>
+<h1>Users</h1> <ul>
+{% for user in users %} <li>{{ user.name }}</li>
+{% endfor %} </ul>
+<h3>titulo if </h3>
+{% if item.content|length > 0 %}
+  <h1>{{ item.content }}</h1>
+{% endif %}
+
+</div>
