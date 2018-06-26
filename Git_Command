@@ -1,0 +1,26 @@
+$ git branch nuevafuncionalidad
+$ git checkout nuevafuncionalidad
+
+crea de una vez la rama 
+
+$ git checkout -b nuevafuncionalidad
+
+Una vez creada nuestra nueva rama de desarrollo, podemos comprobar en que rama nos encontramos utilizando el comando git branch
+$ git branch
+
+$ git commit -a -m 
+$ git checkout master
+$ git commit -a -m 
+
+Ahora podemos ver las diferencias entre nuestras dos ramas usando el comando diff.
+git diff --stat master nuevafuncionalidad
+
+
+Mezclando Ramas
+
+
+$ git merge otrarama
+
+
+Git viene al rescate con el comando reset. Para hacer un reset de nuestro directorio de trabajo y volver atrás hasta antes de intentar mezclar las ramas, solamente debemos de ejecutar a nuestro buen amigo git reset.
+$ git reset --hard HEAD
