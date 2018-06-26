@@ -1,0 +1,5 @@
+name: Forcontu Ajax
+type: module
+description: 'Formulario por ajax.'
+package: Forcontu
+core: 8.x

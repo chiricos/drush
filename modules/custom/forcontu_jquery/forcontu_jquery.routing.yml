@@ -1,0 +1,7 @@
+forcontu_jquery.fadeout:
+  path: '/forcontu/jquery/fadeout'
+  defaults:
+    _controller: '\Drupal\forcontu_jquery\Controller\ForcontuJqueryController::fadeout'
+    _title: 'Fade out example'
+  requirements:
+    _permission: 'access content'

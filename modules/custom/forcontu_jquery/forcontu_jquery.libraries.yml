@@ -1,0 +1,13 @@
+forcontu_jquery.fadeout:
+  js:
+    js/forcontu_jquery_fadeout.js: {}
+  dependencies:
+    - core/jquery
+
+cuddly-slider:
+  version: 1.x
+  js:
+    js/cuddly-slider.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
